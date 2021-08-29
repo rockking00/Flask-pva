@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PVA bull</title>
+    <link rel="canonical" href="{{ request.base_url }}">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static', filename='sms.png')}}">
+    <script type="text/javascript" src="{{url_for('static', filename='js/main.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/iconify.min.js')}}"></script>
+</head>
+
+<body class="antialiased bg-body text-body font-body">
+      <nav class="rounded-lg bg-indigo-50 p-4">
+        <div class="w-auto text-center"><a class="text-xl text-indigo-600 font-semibold font-heading" href="#">PVA BULL</a></div>
+      </nav>
+      <!--账号列表-->
+    <div class="space-y-4">
+      <span class="block">1</span>
+      <span class="block">2</span>
+      <span class="block">3</span>
+    </div>
+
+        <!--选项表单-->
+      <form action="/index" method="post" name="forms" class="text-center p-10">
+            {{homeform.csrf_token}}
+          <div>
+              {{ homeform.amount.label }}
+              {{ homeform.amount(class="border border-black", size="6", value="1000", oninput="myAdd()") }}
+              {{ homeform.accounts(class="border border-black") }}
+              {{ homeform.submit2(class="border border-black w-12 rounded") }}
+              <input name="PAYMENT_AMOUNT" id="PAYMENT_AMOUNT" value="">
+          </div>
+      </form>
+
+    <footer class="rounded-lg bg-indigo-50 flex flex-wrap items-center justify-between p-4 mt-32">
+        <div class="w-full lg:w-auto lg:mr-6 mb-4 lg:mb-0 text-center">&copy; 2021 PVA BULL</div>
+        <div class="flex flex-col lg:flex-row items-center w-full lg:w-auto">
+          <div class="mx-auto lg:mx-0 lg:ml-auto">
+            <a class="inline-block mt-0 ml-8 text-blue-900 hover:text-indigo-600" href="#">Terms of services</a>
+            <a class="inline-block mt-0 ml-8 text-blue-900 hover:text-indigo-600" href="#">Privacy</a>
+          </div>
+        </div>
+    </footer>
+</body>
+<script>
+    function myAdd() {
+        let amo = document.getElementById('amount').value;
+        let acc = document.getElementById('accounts').value;
+        let sum = amo*acc;
+        return sum
+    }
+    document.getElementById('PAYMENT_AMOUNT').value=myAdd();
+</script>
+</html>

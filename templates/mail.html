@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact</title>
+    <link rel="canonical" href="{{ request.base_url }}">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static', filename='sms.png')}}">
+    <script type="text/javascript" src="{{url_for('static', filename='js/main.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/iconify.min.js')}}"></script>
+</head>
+<body>
+<section class="py-12 px-4">
+      <h2 class="text-4xl mb-10 text-center font-semibold font-heading">Contact</h2>
+      <div class="w-full max-w-2xl mx-auto mb-8">
+        <!--邮件表单-->
+        <form action="{{ url_for('mail_1') }}" method="POST">
+            {{ form.csrf_token }}
+            <div>
+               {{ form.email.label }}
+               {{ form.email(class="appearance-none block w-full py-3 px-4 leading-tight text-gray-700 bg-gray-50 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none", type="email", placeholder="Email") }}
+               {% for error in form.email.errors %}
+               <span style="color: red;">[{{ error }}]</span>
+               {% endfor %}
+            </div>
+
+          <div class="mb-4">
+              {{ form.message.label }}
+              {{ form.message(class="appearance-none block w-full py-3 px-4 leading-tight text-gray-700 bg-gray-50 focus:bg-white border border-gray-200 focus:border-gray-500 rounded focus:outline-none", placeholder="Write something...", rows="5") }}
+              {% for error in form.message.errors %}
+              <span style="color: red;">[{{ error }}]</span>
+              {% endfor %}
+          </div>
+          <div>
+            <button class="inline-block w-full py-4 px-8 leading-none bg-indigo-600 rounded shadow" type="submit" onclick="alert('Submit successfully')">{{ form.submit(class="cursor-pointer bg-indigo-600 text-white font-semibold") }}</button>
+          </div>
+        </form>
+      </div>
+</section>
+<div class="text-center">
+    <a href="#">Back to homepage</a>
+</div>
+</body>
+</html>
